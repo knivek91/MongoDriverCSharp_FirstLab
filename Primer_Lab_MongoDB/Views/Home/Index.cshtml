@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout/_LayoutPrincipal.cshtml";
+}
+
+<div class="container">
+    <h2>First Lab With MondoDB Driver C#</h2>
+    <hr />
+
+    <form class="form-horizontal">
+        <div class="row">
+            <div class="">
+                <input type="hidden" name="txtGuid" />
+                <div class="col-xs-12 col-sm-5">
+                    <input class="form-control" type="text" name="txtName" placeholder="Name" />
+                </div>
+                <div class="col-xs-12 col-sm-5">
+                    <input class="form-control" type="number" name="txtAge" value="1" min="1" max="100" />
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <button id="btnAdd" type="button" class="btn btn-warning"><i class="glyphicon glyphicon-plus"></i></button>
+                    <button id="btnUpdate" type="button" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                    <button id="btnDelete" type="button" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <hr />
+    <div class="table-responsive">
+        <table id="tblPeople"></table>
+    </div>
+</div>
+
+@section JS {
+    <script src="~/Public/js/main.js"></script>
+}
