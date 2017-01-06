@@ -13,24 +13,54 @@ namespace Models
         #region Varible
         protected static IMongoClient _client;
         protected static IMongoDatabase _database;
+        IMongoClient _a;
         #endregion
 
         #region Constructor
         public Connection()
         {
-            var server = new MongoServerAddress("ds151028.mlab.com", 51028);
-            var credential = MongoCredential.CreateMongoCRCredential("testmongodb", "CaloMendez10", "creativecalo10");
-
-            string mongDB = System.Configuration.ConfigurationManager.AppSettings["mongoDBConn"];
-            _client = new MongoClient(new MongoClientSettings() {
-
-                Credentials = new[] { credential }
-                , Server = server
-                , ConnectTimeout = new TimeSpan(0, 1, 0)
-
-            });
-            _database = _client.GetDatabase(System.Configuration.ConfigurationManager.AppSettings["mongoDataBase"]);
+            //var server = new MongoServerAddress("ds151028.mlab.com", 51028);
+            //var credential = MongoCredential.CreateMongoCRCredential("testmongodb", "KevinUserDB", "creativecalo10");
             
+            //_client = new MongoClient(new MongoClientSettings() {
+
+            //    Credentials = new[] { credential }
+            //    , Server = server
+            //    , ConnectTimeout = new TimeSpan(0, 1, 0)
+
+            //});
+            //_database = _client.GetDatabase(System.Configuration.ConfigurationManager.AppSettings["mongoDataBase"]);
+            try
+            {
+
+                var server = new MongoServerAddress("ds151028.mlab.com", 151028);
+
+                var credential = MongoCredential.CreateMongoCRCredential("testmongodb", "KevinUserDB", "creativecalo10");
+
+                _a = new MongoClient(new MongoClientSettings()
+                {
+                    Credentials = new[] { credential },
+                    Server = server,
+                    ConnectTimeout = TimeSpan.FromSeconds(60),
+                    SocketTimeout = TimeSpan.FromSeconds(60), 
+                //    ReadPreference = ReadPreference.Primary     
+                });
+
+                string mongDB = System.Configuration.ConfigurationManager.AppSettings["mongoDBConn"];
+
+                IMongoDatabase _db = _a.GetDatabase("testmongodb");
+                IMongoCollection<Person> collection = _db.GetCollection<Person>("documents");
+                List<Person> _lst = collection.AsQueryable().Select(x => x).ToList<Person>();
+               
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+
+
+
         }
         #endregion
 
@@ -73,6 +103,7 @@ namespace Models
 
         public List<Person> getDocsWithModel()
         {
+
             if (_database.Client.Cluster.Description.State == MongoDB.Driver.Core.Clusters.ClusterState.Disconnected)
                 return null;
             IMongoCollection<Person> collection = _database.GetCollection<Person>("documents");
