@@ -15,7 +15,7 @@ namespace Controllers
 
         public ActionResult Index()
         {
-            Models.Connection conn = new Models.Connection();
+            //Models.Connection conn = new Models.Connection();
             //List<Models.Person> _list = conn.getDocsWithModel();
 
             //conn.modifyDoc(new Models.Person() { Age = "25", Name = "kevin a. rojas vargas", Guid = "214c3fec-33ce-4334-a201-3b515641fbad" });
