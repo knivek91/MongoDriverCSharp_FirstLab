@@ -20,7 +20,7 @@ namespace Models
         public Connection()
         {
             //var server = new MongoServerAddress("ds151028.mlab.com", 51028);
-            //var credential = MongoCredential.CreateMongoCRCredential("testmongodb", "KevinUserDB", "creativecalo10");
+            //var credential = MongoCredential.CreateMongoCRCredential("testmongodb", "CaloMendez10", "creativecalo10");
             
             //_client = new MongoClient(new MongoClientSettings() {
 
@@ -32,25 +32,29 @@ namespace Models
             //_database = _client.GetDatabase(System.Configuration.ConfigurationManager.AppSettings["mongoDataBase"]);
             try
             {
-
-                var server = new MongoServerAddress("ds151028.mlab.com", 151028);
-
-                var credential = MongoCredential.CreateMongoCRCredential("testmongodb", "KevinUserDB", "creativecalo10");
-
-                _a = new MongoClient(new MongoClientSettings()
-                {
-                    Credentials = new[] { credential },
-                    Server = server,
-                    ConnectTimeout = TimeSpan.FromSeconds(60),
-                    SocketTimeout = TimeSpan.FromSeconds(60), 
-                //    ReadPreference = ReadPreference.Primary     
-                });
-
+                
                 string mongDB = System.Configuration.ConfigurationManager.AppSettings["mongoDBConn"];
+                _client = new MongoClient(mongDB);
 
-                IMongoDatabase _db = _a.GetDatabase("testmongodb");
-                IMongoCollection<Person> collection = _db.GetCollection<Person>("documents");
-                List<Person> _lst = collection.AsQueryable().Select(x => x).ToList<Person>();
+                var a = _client.GetDatabase("testmongodb").GetCollection<BsonDocument>("documents").AsQueryable()
+                                                          .Select(x => x).ToList<BsonDocument>();
+                
+                //var server = new MongoServerAddress("ds151028.mlab.com", 51028);
+
+                //var credential = MongoCredential.CreateMongoCRCredential("testmongodb", "KevinUserDB", "creativecalo10");`
+
+                //_a = new MongoClient(new MongoClientSettings()
+                //{
+                //    Credentials = new[] { credential },
+                //    Server = server,
+                //    ConnectTimeout = TimeSpan.FromSeconds(60),
+                //    SocketTimeout = TimeSpan.FromSeconds(60), 
+                ////    ReadPreference = ReadPreference.Primary     
+                //});
+
+                //IMongoDatabase _db = _a.GetDatabase("testmongodb");
+                //IMongoCollection<Person> collection = _db.GetCollection<Person>("documents");
+                //List<Person> _lst = collection.AsQueryable().Select(x => x).ToList<Person>();
                
             }
             catch (Exception ex)
