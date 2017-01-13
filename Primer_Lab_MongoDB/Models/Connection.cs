@@ -18,17 +18,9 @@ namespace Models
         #region Constructor
         public Connection()
         {
-            var server = new MongoServerAddress("ds151028.mlab.com", 51028);
-            var credential = MongoCredential.CreateMongoCRCredential("testmongodb", "CaloMendez10", "creativecalo10");
 
-            string mongDB = System.Configuration.ConfigurationManager.AppSettings["mongoDBConn"];
-            _client = new MongoClient(new MongoClientSettings() {
-
-                Credentials = new[] { credential }
-                , Server = server
-                , ConnectTimeout = new TimeSpan(0, 1, 0)
-
-            });
+            string mongoDB = System.Configuration.ConfigurationManager.AppSettings["mongoDBConn"];
+            _client = new MongoClient(mongoDB);
             _database = _client.GetDatabase(System.Configuration.ConfigurationManager.AppSettings["mongoDataBase"]);
             
         }
