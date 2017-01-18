@@ -53,3 +53,6 @@ C:\Users\krojas\Desktop\MongoDriverCSharp_FirstLab\Primer_Lab_MongoDB\bin\System
 C:\Users\krojas\Desktop\MongoDriverCSharp_FirstLab\Primer_Lab_MongoDB\obj\Debug\Primer_Lab_MongoDB.csprojResolveAssemblyReference.cache
 C:\Users\krojas\Desktop\MongoDriverCSharp_FirstLab\Primer_Lab_MongoDB\obj\Debug\Primer_Lab_MongoDB.dll
 C:\Users\krojas\Desktop\MongoDriverCSharp_FirstLab\Primer_Lab_MongoDB\obj\Debug\Primer_Lab_MongoDB.pdb
+C:\Users\krojas\Desktop\MongoDriverCSharp_FirstLab\Primer_Lab_MongoDB\bin\MongoDB.Bson.dll
+C:\Users\krojas\Desktop\MongoDriverCSharp_FirstLab\Primer_Lab_MongoDB\bin\MongoDB.Driver.Core.dll
+C:\Users\krojas\Desktop\MongoDriverCSharp_FirstLab\Primer_Lab_MongoDB\bin\MongoDB.Driver.dll
