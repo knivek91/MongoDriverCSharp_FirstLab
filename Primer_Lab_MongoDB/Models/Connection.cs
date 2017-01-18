@@ -13,7 +13,6 @@ namespace Models
         #region Varible
         protected static IMongoClient _client;
         protected static IMongoDatabase _database;
-        IMongoClient _a;
         #endregion
 
         #region Constructor
@@ -59,7 +58,6 @@ namespace Models
             }
             catch (Exception ex)
             {
-                
                 throw;
             }
 
